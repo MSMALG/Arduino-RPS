@@ -17,8 +17,8 @@ int buttonStateOldGr = HIGH;
 int buttonStateOldYe = HIGH;
 
 int dt = 100;
-int dt2 = 1000;
 int computerChoice;
+
 
 void setup() {
   pinMode(YellowledPin, OUTPUT);
@@ -27,11 +27,11 @@ void setup() {
   pinMode(RedledPin, OUTPUT);
   pinMode(GreenledPin, OUTPUT);
 
-  pinMode(BlackbuttonPin, INPUT);
-  pinMode(GreenbuttonPin, INPUT);
-  pinMode(YellowbuttonPin, INPUT);
+  pinMode(BlackbuttonPin, INPUT_PULLUP);
+  pinMode(GreenbuttonPin, INPUT_PULLUP);
+  pinMode(YellowbuttonPin, INPUT_PULLUP);
 
-  randomSeed(analogRead(0)); // Initializing random number generator
+  randomSeed(analogRead(0)); //random number generator
 
   Serial.begin(9600);
 }
@@ -41,56 +41,56 @@ void loop() {
   GrbuttonState = digitalRead(GreenbuttonPin);
   YbuttonState = digitalRead(YellowbuttonPin);
 
-  computerChoice = random(3);  // Generate random number between 0 and 2
+  computerChoice = random(3); 
 
-  // First case, Player chooses Rock
+  digitalWrite(YellowledPin, LOW);
+  digitalWrite(WhiteledPin, LOW);
+  digitalWrite(BlueledPin, LOW);
+  digitalWrite(RedledPin, LOW);
+  digitalWrite(GreenledPin, LOW);
+
+  // First case: Player chooses Rock
   if (buttonStateOldBlk == HIGH && BlkbuttonState == LOW) {
     if (computerChoice == 0) {
-      digitalWrite(WhiteledPin, HIGH);  // Computer chooses Paper (Player loses)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
+      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Player loses)
+      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
     } else if (computerChoice == 1) {
-      digitalWrite(YellowledPin, HIGH);  // Computer chooses Scissors (Player wins)
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Player wins)
+      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
     } else {
-      digitalWrite(BlueledPin, HIGH);  // Computer chooses Rock (Draw)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Draw)
     }
-    delay(dt2);
+    delay(1000);
   }
   buttonStateOldBlk = BlkbuttonState;
 
   // Second case: Player chooses Paper
   if (buttonStateOldGr == HIGH && GrbuttonState == LOW) {
     if (computerChoice == 0) {
-      digitalWrite(YellowledPin, HIGH);  // Computer chooses Scissors (Player loses)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
+      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Player loses)
+      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
     } else if (computerChoice == 1) {
-      digitalWrite(BlueledPin, HIGH);  // Computer chooses Rock (Player wins)
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Player wins)
+      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
     } else {
-      digitalWrite(WhiteledPin, HIGH);  // Computer chooses Paper (Draw)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Draw)
     }
-    delay(dt2);
+    delay(1000);
   }
   buttonStateOldGr = GrbuttonState;
 
   // Third case: Player chooses Scissors
   if (buttonStateOldYe == HIGH && YbuttonState == LOW) {
     if (computerChoice == 0) {
-      digitalWrite(BlueledPin, HIGH);  // Computer chooses Rock (Player loses)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
+      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Player loses)
+      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
     } else if (computerChoice == 1) {
-      digitalWrite(WhiteledPin, HIGH);  // Computer chooses Paper (Player wins)
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Player wins)
+      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
     } else {
-      digitalWrite(YellowledPin, HIGH);  // Computer chooses Scissors (Draw)
-      digitalWrite(RedledPin, HIGH);    // Turn on Red LED 
-      digitalWrite(GreenledPin, HIGH);   // Turn on Green LED 
+      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Draw)
     }
-    delay(dt2);
+    delay(1000);
   }
   buttonStateOldYe = YbuttonState;
 
