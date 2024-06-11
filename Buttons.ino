@@ -1,12 +1,12 @@
-const int YellowledPin = 8;  // Scissors LED
-const int WhiteledPin = 9;   // Paper LED
-const int BlueledPin = 7;    // Rock LED
-const int RedledPin = 12;    // Red LED for player lose
-const int GreenledPin = 10;  // Green LED for player win
+const int YellowledPin = 8;  //Scissors LED
+const int WhiteledPin = 9;   //Paper LED
+const int BlueledPin = 7;    //Rock LED
+const int RedledPin = 12;    //Red LED for player's loss
+const int GreenledPin = 10;  //Green LED for player's win
 
-const int BlackbuttonPin = 2;  // Rock Button
-const int GreenbuttonPin = 4;  // Paper Button
-const int YellowbuttonPin = 6; // Scissors Button
+const int BlackbuttonPin = 2;  //Rock Button
+const int GreenbuttonPin = 4;  //Paper Button
+const int YellowbuttonPin = 6; //Scissors Button
 
 int BlkbuttonState = 0;
 int GrbuttonState = 0;
