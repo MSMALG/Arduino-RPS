@@ -36,6 +36,42 @@ void setup() {
   Serial.begin(9600);
 }
 
+void display_computer(computerChoice)
+{
+ if (computerChoice == 0) {
+      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Player loses)
+    } else if (computerChoice == 1) {
+      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Player wins)
+    } else if(computerChoice == 2) {
+      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Draw)
+    }
+  else
+ {
+   digitalWrite(WhiteledPin, HIGH);
+   digitalWrite(YellowledPin, HIGH);
+   digitalWrite(BlueledPin, HIGH);
+ }
+    delay(1000);
+  
+   digitalWrite(WhiteledPin, LOW);
+   digitalWrite(YellowledPin, LOW);
+   digitalWrite(BlueledPin, LOW);
+}
+
+void game_status(status)
+{
+  if (status == "win") 
+    digitalWrite(GreenledPin, HIGH);
+  else if (status == "lose")
+    digitalWrite(RedledPin, HIGH);
+  else
+  {
+    digitalWrite(GreenledPin, HIGH);
+    digitalWrite(RedledPin, HIGH);
+  }
+  delay(1000)
+}
+
 void loop() {
   BlkbuttonState = digitalRead(BlackbuttonPin);
   GrbuttonState = digitalRead(GreenbuttonPin);
@@ -51,29 +87,27 @@ void loop() {
 
   // First case: Player chooses Rock
   if (buttonStateOldBlk == HIGH && BlkbuttonState == LOW) {
+    display_computer(computerChoice)
     if (computerChoice == 0) {
-      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Player loses)
-      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
+      game_status("lose")   //Turn on Red LED, Player Loses
     } else if (computerChoice == 1) {
-      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Player wins)
-      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
+       game_status("win")    //Turn on Green LED , PLayer Wins
     } else {
-      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Draw)
+       game_status()   //Computer chooses Rock (Draw)
     }
-    delay(1000);
+    delay(1000)
   }
   buttonStateOldBlk = BlkbuttonState;
 
   // Second case: Player chooses Paper
   if (buttonStateOldGr == HIGH && GrbuttonState == LOW) {
+    display_computer(computerChoice)
     if (computerChoice == 0) {
-      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Player loses)
-      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
+      game_status("lose")   //Computer chooses Scissors (Player loses)  
     } else if (computerChoice == 1) {
-      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Player wins)
-      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
+       game_status("win")
     } else {
-      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Draw)
+       game_status()  
     }
     delay(1000);
   }
@@ -81,14 +115,13 @@ void loop() {
 
   // Third case: Player chooses Scissors
   if (buttonStateOldYe == HIGH && YbuttonState == LOW) {
+    display_computer(computerChoice)
     if (computerChoice == 0) {
-      digitalWrite(BlueledPin, HIGH);  //Computer chooses Rock (Player loses)
-      digitalWrite(RedledPin, HIGH);    //Turn on Red LED 
+       game_status("lose") 
     } else if (computerChoice == 1) {
-      digitalWrite(WhiteledPin, HIGH);  //Computer chooses Paper (Player wins)
-      digitalWrite(GreenledPin, HIGH);   //Turn on Green LED 
+       game_status("win")
     } else {
-      digitalWrite(YellowledPin, HIGH);  //Computer chooses Scissors (Draw)
+      game_status()  
     }
     delay(1000);
   }
