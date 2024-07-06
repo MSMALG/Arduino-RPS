@@ -1,8 +1,8 @@
-RPC V1.0 -> this file is first version of project rock paper scissros 
-This code shows a simple form of the game rock paper scissors using LED lights and push buttons. Yellow Led represents scissors,
-White LED is paper and Blue LED is rock. For the buttons ButtonBlk is Rock, ButtonGr is paper and ButtonYel is scissors.
+This repository contains two files implementing a rock-paper-scissors game "RPC".
 
-RPC V2.0 -> A second version of "RPC-V1.0", this file has the same functionalities as the first version, however it diplsays the computer 
-decision on an LCD screen after the player pushes one of the given buttons.
+RPC-V1.0.ino -> This file implements a basic Rock-Paper-Scissors game using LEDs.
+Yellow LED represents scissors, White LED is paper, and Blue LED is rock.
+ButtonBlk represents Rock, ButtonGr represents paper, and ButtonYel represents scissors.
 
-RPC V3.0 "Coming UP"
+RPC-V2.0.ino -> an enhanced version of the game it builds upon V1.0 by displaying the computer's choice on an LCD screen after the player presses a button.
+Functionality remains the same as V1.0.
